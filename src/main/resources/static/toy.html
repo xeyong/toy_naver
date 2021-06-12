@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript">
+    function toy(){
+        let search = document.getElementById('text').value;
+        location.href = "http://localhost:8080/toy/api?query="+search;
+    }
+</script>
+<body>
+<div class="search">
+    <input type="text" id="text" placeholder="검색어를 입력해주세요.">
+</div>
+<div class="button">
+    <button onclick="toy()">검색</button>
+</div>
+</body>
+</html>
