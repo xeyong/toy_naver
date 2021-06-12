@@ -1,5 +1,6 @@
 package com.example.toy_naver.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.nio.charset.Charset;
 
+@Slf4j
 @RestController
 @RequestMapping("/toy/api")
 public class ToyRestController {
@@ -25,7 +28,7 @@ public class ToyRestController {
                 .queryParam("display", 10)
                 .queryParam("start", 1)
                 .queryParam("sort", "random")
-                .encode().build().toUri();
+                .encode(Charset.forName("UTF-8")).build().toUri();
 
         RequestEntity<Void> requestEntity = RequestEntity
                 .get(uri)
@@ -36,7 +39,7 @@ public class ToyRestController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> result = restTemplate.exchange(requestEntity, String.class);
 
+        log.info("uri :{}", uri);
         return result.getBody();
-
     }
 }
